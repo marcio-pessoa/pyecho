@@ -2,7 +2,7 @@
 ---
 name: echo.py
 description: Echo package
-verbosity:
+levels:
     0 Quiet (no messages)
     1 Errors
     2 Warnings
@@ -14,6 +14,9 @@ people:
   - name: Marcio Pessoa
     email: marcio.pessoa@gmail.com
 change-log:
+  2019-12-21
+  - version: 0.3
+    added: header method.
   2019-09-07
   - version: 0.2
     fixed: pylint friendly.
@@ -47,24 +50,33 @@ from termcolor import cprint
 INDENT_WIDTH = 4
 
 
-class Echo():
+class Echo:
     """
     description:
     """
 
-    @classmethod
-    def __init__(cls):
-        cls.version = 0.2
-        cls.verbosity = 0
+    _version = 0.3
+    __header = False
+    __level = 1
 
     @classmethod
-    def verbose(cls, verbosity=None):
+    def level(cls, verbosity=None):
         """
         description:
         """
         if verbosity is None:
-            return int(cls.verbosity)
-        cls.verbosity = verbosity
+            return int(cls.__level)
+        cls.__level = verbosity
+        return False
+
+    @classmethod
+    def header(cls, state=None):
+        """
+        description:
+        """
+        if state is None:
+            return cls.__header
+        cls.__header = state
         return False
 
     @classmethod
@@ -92,23 +104,23 @@ class Echo():
         """
         description:
         """
-        if int(verbosity) <= int(cls.verbosity):
+        if int(verbosity) <= int(cls.__level):
             print(string, end=trailer)
             sys.stdout.flush()
 
 
-def verbose(verbosity):
+def header(state=None):
     """
     description:
     """
-    Echo.verbose(verbosity)
+    return Echo.header(state)
 
 
-def level():
+def level(verbosity=None):
     """
     description:
     """
-    return Echo.verbose()
+    return Echo.level(verbosity)
 
 
 def echo(string, indent=0):
@@ -129,28 +141,36 @@ def erro(string, indent=0):
     """
     description:
     """
-    Echo.echo('Error: ' + string, 1, indent)
+    if Echo.header():
+        string = 'Error: ' + string
+    Echo.echo(string, 1, indent)
 
 
 def erroln(string, indent=0):
     """
     description:
     """
-    Echo.echoln('Error: ' + string, 1, indent)
+    if Echo.header():
+        string = 'Error: ' + string
+    Echo.echoln(string, 1, indent)
 
 
 def warn(string, indent=0):
     """
     description:
     """
-    Echo.echo('Warning: ' + string, 2, indent)
+    if Echo.header():
+        string = 'Warning: ' + string
+    Echo.echo(string, 2, indent)
 
 
 def warnln(string, indent=0):
     """
     description:
     """
-    Echo.echoln('Warning: ' + string, 2, indent)
+    if Echo.header():
+        string = 'Warning: ' + string
+    Echo.echoln(string, 2, indent)
 
 
 def info(string, indent=0):
