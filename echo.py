@@ -13,36 +13,8 @@ people:
   developers:
   - name: Marcio Pessoa
     email: marcio.pessoa@gmail.com
-change-log:
-  2019-12-21
-  - version: 0.3
-    added: header method.
-  2019-09-07
-  - version: 0.2
-    fixed: pylint friendly.
-  2017-07-08
-  - version: 0.06
-    added: debug function.
-    added: debugln function.
-  2017-05-11
-  - version: 0.05b
-    fixed: flush code output.
-  2017-04-01
-  - version: 0.04b
-    added: Version information.
-  2017-03-07
-  - version: 0.03b
-    added: colors code output.
-  2017-02-26
-  - version: 0.02b
-    added: __future__ functions, more near to addopt Python 3 style.
-  2017-02-20
-  - version: 0.01b
-    added: print() brackets to addopt Python 3 style.
-  2017-02-06
-  - version: 0.00b
-    added: First version.
-  """
+change-log: Check README.md file.
+"""
 
 import sys
 from termcolor import cprint
