@@ -27,7 +27,7 @@ class Echo:
     description:
     """
 
-    _version = 0.3
+    __version__ = 0.3
     __header = False
     __level = 1
 
@@ -79,6 +79,9 @@ class Echo:
         if int(verbosity) <= int(cls.__level):
             print(string, end=trailer)
             sys.stdout.flush()
+
+
+__version__ = Echo.__version__
 
 
 def header(state=None):
