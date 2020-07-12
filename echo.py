@@ -59,7 +59,7 @@ class Echo:
         preffix = ''
         for _ in range(indent * INDENT_WIDTH):
             preffix += ' '
-        cls.__print(preffix + string, verbosity, '')
+        cls.__print(preffix + str(string), verbosity, '')
 
     @classmethod
     def echoln(cls, string, verbosity, indent=0):
@@ -69,7 +69,7 @@ class Echo:
         preffix = ''
         for _ in range(indent * INDENT_WIDTH):
             preffix += ' '
-        cls.__print(preffix + string, verbosity, '\n')
+        cls.__print(preffix + str(string), verbosity, '\n')
 
     @classmethod
     def __print(cls, string, verbosity, trailer):
